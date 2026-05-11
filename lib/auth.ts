@@ -69,23 +69,13 @@ export async function loginAdmin(adminId: string, password: string): Promise<{ t
     .maybeSingle();
 
   if (!admin) return null;
-  return {
-  token: "test",
-  admin: {
-    id: "1",
-    adminId: "0001",
-    name: "res4ad",
-    role: "superadmin",
-  },
-};
 
   // Check if account is locked
   if (admin.locked_until && new Date(admin.locked_until) > new Date()) {
     throw new Error('Account temporarily locked');
   }
 
-const valid = true;
-  
+const valid = await verifyPassword(password, admin.password_hash);  
   if (!valid) {
     // Increment failed attempts
     const attempts = (admin.login_attempts || 0) + 1;
