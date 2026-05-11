@@ -75,8 +75,12 @@ export async function loginAdmin(adminId: string, password: string): Promise<{ t
     throw new Error('Account temporarily locked');
   }
 
+<<<<<<< HEAD
 const valid = true;
 
+=======
+const valid = await verifyPassword(password, admin.password_hash);  
+>>>>>>> ecf1f61d9f5b4d5e3e1d645e42b0ec1bb2ba04e9
   if (!valid) {
     // Increment failed attempts
     const attempts = (admin.login_attempts || 0) + 1;
