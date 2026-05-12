@@ -7,7 +7,11 @@ import Footer from '@/components/layout/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: {
+ 
+	icons: {
+  	icon: '/favicon.ico',
+},
+    title: {
     default: 'res4ad — Pentester & Red Team Enthusiast',
     template: '%s | res4ad',
   },
@@ -49,8 +53,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 
 
-export const metadata = {
-  icons: {
-    icon: '/favicon.ico',
-  },
-};
+
