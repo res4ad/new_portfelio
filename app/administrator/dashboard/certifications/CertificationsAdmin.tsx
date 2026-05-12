@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { Plus, Save, Trash2, X, Award } from 'lucide-react';
 
 interface Cert {
-  id: string; name: string; issuer: string; date_obtained: string;
+  id: string; name: string; issuer: string; issue_date: string;
   expiry_date: string; credential_id: string; credential_url: string;
   badge_url: string; is_active: boolean; sort_order: number;
 }
 
 const EMPTY: Omit<Cert, 'id'> = {
-  name: '', issuer: '', date_obtained: '', expiry_date: '', credential_id: '',
+  name: '', issuer: '', issue_date: '', expiry_date: '', credential_id: '',
   credential_url: '', badge_url: '', is_active: true, sort_order: 0,
 };
 
@@ -70,7 +70,7 @@ export default function CertificationsAdmin({ certs: initial }: { certs: Cert[] 
             {([
               { k: 'name', label: 'Cert Name', ph: 'e.g. CRTA' },
               { k: 'issuer', label: 'Issuer', ph: 'e.g. CyberWarFare Labs' },
-              { k: 'date_obtained', label: 'Date Obtained', ph: '2024-01-01', type: 'date' },
+              { k: 'issue_date', label: 'Date Obtained', ph: '2024-01-01', type: 'date' },
               { k: 'expiry_date', label: 'Expiry Date', ph: '2027-01-01', type: 'date' },
               { k: 'credential_id', label: 'Credential ID', ph: 'CWL-CRTA-...' },
               { k: 'credential_url', label: 'Credential URL', ph: 'https://...' },
@@ -108,9 +108,9 @@ export default function CertificationsAdmin({ certs: initial }: { certs: Cert[] 
                 <div style={{ color: 'var(--accent)', fontSize: '0.78rem', fontFamily: 'JetBrains Mono, monospace' }}>{cert.issuer}</div>
               </div>
             </div>
-            {cert.date_obtained && (
+            {cert.issue_date && (
               <div style={{ color: 'var(--text-dim)', fontSize: '0.72rem', fontFamily: 'JetBrains Mono, monospace', marginBottom: '0.5rem' }}>
-                Issued: {cert.date_obtained}
+                Issued: {cert.issue_date}
                 {cert.expiry_date && ` · Expires: ${cert.expiry_date}`}
               </div>
             )}
